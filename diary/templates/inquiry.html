@@ -1,9 +1,10 @@
-{% extends 'base.html' %}
+<!-- {% extends 'base.html' %}
 {% load static %}
 
 
-{% block title %}お問い合わせ {% endblock %}
+{% block title %}お問い合わせ {% endblock %} -->
 
+<html>
     <div class="container">
         <form method="POST">
             {% csrf_token %}
@@ -14,5 +15,6 @@
         </form>
      
     </div>
+    </html>
 
  
