@@ -124,3 +124,6 @@ import os
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+#開発環境ではメールのシステムをスタブ化
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
