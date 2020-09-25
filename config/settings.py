@@ -141,6 +141,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #ユーザ認証の設定
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+SITE_ID = 1
+
 #認証方法を複数使用
 AUTHENTICATION_BACKENDS = (
     #一般ユーザ用(メールアドレス認証）
