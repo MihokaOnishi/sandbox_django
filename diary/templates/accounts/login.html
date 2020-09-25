@@ -1,0 +1,46 @@
+{% extends "accounts/base.html" %}
+
+{% load i18n %}
+{% load accounts socialaccounts %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccountss_providers %}
+
+{% if socialaccountss_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accountsss. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} accountss and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccountss_ballot">
+
+  <ul class="socialaccounts_providers">
+    {% include "socialaccounts/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccounts/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an accounts yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'accounts_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'accounts_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form>
+
+{% endblock %}

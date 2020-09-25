@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'diary.apps.DiaryConfig',
+    'accounts.apps.AccountsConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +132,31 @@ STATICFILES_DIR = (
 
 #開発環境ではメールのシステムをスタブ化
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# from django.contrib.adminmessage import constants as messages
+# MESSAGE_TAGS = [
+
+# ]
+
+#ユーザ認証の設定
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+#認証方法を複数使用
+AUTHENTICATION_BACKENDS = (
+    #一般ユーザ用(メールアドレス認証）
+    'allauth.account.auth_backends.AuthenticationBackend',
+    #管理サイト用（ユーザ名認証）
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+#メールアドレス認証に変更する設定
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+
+#サインアップ時にメールアドレス確認をはさむ設定
+ACCOUNT_EMAIL_VARIFICATION ='mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+#ログイン/ログアウト時の遷移先の設定
+ROGIN_REDIRECT_URL = 'diary:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
