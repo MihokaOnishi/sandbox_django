@@ -1,5 +1,9 @@
 """
+<<<<<<< HEAD
 ASGI config for config project.
+=======
+ASGI config for confug project.
+>>>>>>> upstream/master
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +15,10 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+<<<<<<< HEAD
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+=======
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'confug.settings')
+>>>>>>> upstream/master
 
 application = get_asgi_application()
